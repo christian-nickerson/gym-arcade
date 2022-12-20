@@ -2,5 +2,29 @@
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "gym-arcade"
+description = "An extension of OpenAIs Gymn framework to train and play two player games using reinforcement learners"
+version = "0.1.0"
+readme = "README.md"
+requires-python = "3.8"
+authors = [
+  {email = "christain_nickerson@hotmail.com"},
+  {name = "Christian Nickerson"}
+]
+dependencies = [
+    "gymnasium == 0.27.0",
+    "gym-retro == 0.8.0"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest == 7.2.0",
+    "black == 22.12.0"
+]
+
+[project.urls]
+repository = "https://github.com/christian-nickerson/gym-arcade"
+
 [tool.black]
 line-length = 119
