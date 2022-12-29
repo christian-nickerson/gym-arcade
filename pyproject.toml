@@ -43,7 +43,7 @@ line-length = 119
 [tool.isort]
 atomic = true
 profile = "black"
-src_paths = ["gymnasium", "tests", "docs/scripts"]
+src_paths = ["gym-arcade", "tests"]
 extra_standard_library = ["typing_extensions"]
 indent = 4
 lines_after_imports = 2
