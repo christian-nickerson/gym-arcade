@@ -1,52 +1,49 @@
-name: testing
-on:
-  push:
-    branches:
-      - "**"
-jobs:
+# name: testing
+# on:
+#   push:
+#     branches:
+#       - "**"
+# jobs:
 
-  linting-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install .
-      - name: lint (black)
-        run: black --check src/ tests/
-      - name: lint (isort)
-        run: isort --check-only --profile black src/ tests/
-      - name: lint (flake8)
-        run: flake8 src/ tests/
-      - name: lint (mypy)
-        run: mypy src/ tests/
+#   linting-tests:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.9'
+#       - name: Install dependencies
+#         run: pip install .
+#       - name: lint (black)
+#         run: black --check src/ tests/
+#       - name: lint (isort)
+#         run: isort --check-only --profile black src/ tests/
+#       - name: lint (flake8)
+#         run: flake8 src/ tests/
+#       - name: lint (mypy)
+#         run: mypy src/ tests/
 
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install .
-          pip install coverage
-      - name: Pytest unit tests
-        run: |
-          pytest tests/ -s
-          coverage report
-          coverage xml
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: coverage.xml
-        if: ${{ always() }}
+#   unit-tests:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.9'
+#       - name: Install dependencies
+#         run: |
+#           pip install .
+#           pip install coverage
+#       - name: Pytest unit tests
+#         run: |
+#           pytest tests/ -s
+#           coverage report
+#           coverage xml
+#       - name: Upload test results
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: coverage
+#           path: coverage.xml
+#         if: ${{ always() }}
