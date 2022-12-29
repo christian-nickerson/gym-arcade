@@ -4,23 +4,34 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gym-arcade"
-description = "An extension of OpenAIs Gymn framework to train and play two player games using reinforcement learners"
 version = "0.1.0"
+description = "An extension of OpenAIs Gymn framework to train and play two player games using reinforcement learners"
 readme = "README.md"
-requires-python = "3.8"
+requires-python = "==3.8.*"
+license = {file = "LICENSE.txt"}
+keywords = ["AI", "Machine Learning", "Reinforcement Learning", "ML", "RL"]
 authors = [
   {email = "christain_nickerson@hotmail.com"},
   {name = "Christian Nickerson"}
 ]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  'Intended Audience :: Science/Research',
+  'Topic :: Scientific/Engineering :: Artificial Intelligence',
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3 :: Only",
+]
 dependencies = [
     "gymnasium == 0.27.0",
-    "gym-retro == 0.8.0"
+    "gym-retro == 0.8.0",
 ]
 
 [project.optional-dependencies]
 test = [
     "pytest == 7.2.0",
-    "black == 22.12.0"
+    "black == 22.12.0",
 ]
 
 [project.urls]
@@ -28,3 +39,12 @@ repository = "https://github.com/christian-nickerson/gym-arcade"
 
 [tool.black]
 line-length = 119
+
+[tool.isort]
+atomic = true
+profile = "black"
+src_paths = ["gymnasium", "tests", "docs/scripts"]
+extra_standard_library = ["typing_extensions"]
+indent = 4
+lines_after_imports = 2
+multi_line_output = 3
