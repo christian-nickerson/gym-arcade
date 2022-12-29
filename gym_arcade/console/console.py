@@ -1,7 +1,8 @@
-from subprocess import call
-from pathlib import Path
-import retro
 import time
+from pathlib import Path
+from subprocess import call
+
+import retro
 
 
 class ArcadeConsole:
@@ -26,3 +27,20 @@ class ArcadeConsole:
         :param rom_directory: directory to import ROM files from
         """
         call(["python", "-m", "retro.import", rom_directory])
+
+    def run(self, no_of_games: int = 1) -> None:
+        """Run game.
+
+        :param no_of_games: number of games to play.
+        """
+        done = False
+        for game in range(no_of_games):
+            while not done:
+                if done:
+                    obs = self.env.reset()
+                self.env.render()
+                action = self.env.action_space.sample()
+                obs, reward, done, info = self.env.step(action)
+                time.sleep(0.01)
+                print(reward)
+        self.env.close()
