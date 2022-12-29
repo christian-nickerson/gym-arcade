@@ -9,14 +9,13 @@ class ArcadeConsole:
 
     """Console for running games. Requires controllers to play."""
 
-    def __init__(self, game_name: str, rom_directory: str = None) -> None:
+    def __init__(self, game_name: str, rom_directory: Path) -> None:
         """ArcadeConsole initialiser.
 
         :param game_name: name of game to start console with.
-        :param rom_directory: directory to import ROM files from, defaults to None.
+        :param rom_directory: directory to import ROM files from.
         """
-        if not rom_directory:
-            self._import_roms(Path(rom_directory))
+        self._import_roms(Path(rom_directory))
         self.env = retro.make(game=game_name)
         self.env.reset()
 
@@ -42,5 +41,14 @@ class ArcadeConsole:
                 action = self.env.action_space.sample()
                 obs, reward, done, info = self.env.step(action)
                 time.sleep(0.01)
-                print(reward)
         self.env.close()
+
+
+if __name__ == "__main__":
+
+    from pathlib import Path
+
+    rom_path = Path("roms")
+
+    console = ArcadeConsole("StreetFighterIISpecialChampionEdition-Genesis", rom_path)
+    console.run()
