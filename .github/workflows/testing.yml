@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install .
+        run: |
+          pip install --upgrade pip
+          pip install .
       - name: lint (black)
         run: black --check src/ tests/
       - name: lint (isort)
@@ -34,6 +36,7 @@ jobs:
           python-version: '3.9'
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install .
           pip install coverage
       - name: Pytest unit tests
